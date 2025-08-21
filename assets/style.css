@@ -1,0 +1,109 @@
+body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    margin: 0;
+    background: #eaf6fb;
+    color: #222;
+}
+header {
+    background: #1565c0;
+    color: #fff;
+    padding: 2rem 1rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+header img {
+    width: 80px;
+    margin-bottom: 1rem;
+    animation: fadeIn 1s;
+}
+nav {
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem 0;
+}
+nav a {
+    color: #1565c0;
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.2s;
+}
+nav a:hover {
+    color: #003c8f;
+}
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 1rem 0;
+}
+.social-icons a {
+    color: #1565c0;
+    font-size: 2rem;
+    transition: color 0.2s, transform 0.3s;
+}
+.social-icons a:hover {
+    color: #fff;
+    transform: scale(1.2);
+}
+section {
+    max-width: 800px;
+    margin: 2rem auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 2rem;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s, transform 0.8s;
+}
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+h2 {
+    color: #1565c0;
+}
+footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: #003c8f;
+    color: #fff;
+    margin-top: 2rem;
+}
+@media (max-width: 600px) {
+    html, body {
+        height: 100%;
+    }
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    main {
+        flex: 1;
+    }
+    section {
+        padding: 1rem;
+    }
+    nav {
+        gap: 1rem;
+        font-size: 0.95rem;
+    }
+    .social-icons a {
+        font-size: 1.5rem;
+    }
+    header img {
+        width: 60px;
+    }
+    footer {
+        margin-top: auto;
+    }
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
