@@ -31,10 +31,8 @@
   <header>
     <div class="container header-container">
       <div class="logo">
-        <a href="index.html" class="logo-link">
-          <img src="assets/logo.jpg" alt="USDV Logo">
-          <h1>University of Stellenbosch <span class="mobile-break">Debating Society</span></h1>
-        </a>
+        <img src="assets/logo.jpg" alt="USDV Logo">
+        <h1>University of Stellenbosch <span class="mobile-break">Debating Society</span></h1>
       </div>
       <button class="mobile-menu-toggle" aria-label="Toggle menu">
         <i class="fas fa-bars"></i>
@@ -59,14 +57,60 @@
   </div>
 
   <main class="container">
-    <section class="coming-soon-section">
-      <div class="grey-square large">
-        <span>Events Calendar</span>
+    <section class="next-event-section">
+      <h2>Our Next Event</h2>
+      <div id="next-event-image" class="grey-square large">
+        <!-- Image will be loaded here -->
       </div>
-      <div class="coming-soon-text">
-        <h2>Coming Soon</h2>
+      <div class="next-event-text">
+        <h3 id="next-event-title">Loading...</h3>
         <p>We're currently updating our events calendar for the upcoming semester. Check back soon for debates, workshops, and social activities.</p>
         <p>For information about upcoming events, please email us at <a href="mailto:usdv@sun.ac.za">usdv@sun.ac.za</a>.</p>
+      </div>
+    </section>
+
+    <section class="past-events">
+      <h2>Past Events</h2>
+      
+      <div class="event-gallery">
+        <div class="gallery-item">
+          <div class="grey-square small">
+            <span>Climate Debate</span>
+          </div>
+          <h4>Public Debate: Climate Change Policy</h4>
+          <p>November 12, 2023</p>
+        </div>
+        
+        <div class="gallery-item">
+          <div class="grey-square small">
+            <span>Workshop</span>
+          </div>
+          <h4>Argumentation Workshop</h4>
+          <p>October 5, 2023</p>
+        </div>
+        
+        <div class="gallery-item">
+          <div class="grey-square small">
+            <span>Social Mixer</span>
+          </div>
+          <h4>Social Mixer</h4>
+          <p>September 18, 2023</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="participation">
+      <h2>Want to Participate?</h2>
+      <div class="participation-content">
+        <div class="text-content">
+          <p>We welcome students of all backgrounds and experience levels to join our events. No prior debating experience is necessary - just bring your enthusiasm and willingness to engage!</p>
+          <p>For more information about any of our events or to express interest in participating, please email us at <a href="mailto:usdv@sun.ac.za">usdv@sun.ac.za</a>.</p>
+        </div>
+        <div class="image-content">
+          <div class="grey-square">
+            <span>Join Us</span>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -80,17 +124,47 @@
       <div class="footer-section">
         <h3>Follow Us</h3>
         <div class="social-links">
-          <a href="https://www.instagram.com/usdv_official/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.instagram.com/usdu_official/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
           <a href="https://www.facebook.com/stellenboschdebating/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
           <a href="https://x.com/Maties_USDV" target="_blank" aria-label="Twitter/X"><i class="fab fa-x-twitter"></i></a>
         </div>
       </div>
     </div>
     <div class="copyright">
-      <p>&copy; 2025 University of Stellenbosch Debating Society. All rights reserved.</p>
-      <p class="developer-credit">Developed by <a href="https://webbify.co.za/" target="_blank" rel="noopener">Webbify</a></p>
+      <p>&copy; 2023 University of Stellenbosch Debating Society. All rights reserved.</p>
     </div>
   </footer>
-  <script src="js/menu.js"></script>
+
+  <script>
+    // Fetch event title
+    fetch('https://studio--chronoauth-5dt1w.us-central1.hosted.app/api/title')
+      .then(response => response.text())
+      .then(title => {
+        document.getElementById('next-event-title').textContent = title;
+      })
+      .catch(() => {
+        document.getElementById('next-event-title').textContent = 'Event details coming soon';
+      });
+
+    // Fetch event image
+    fetch('https://studio--chronoauth-5dt1w.us-central1.hosted.app/api/image')
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.url) {
+          const img = document.createElement('img');
+          img.src = data.url;
+          img.alt = 'Next Event';
+          img.style.width = '100%';
+          img.style.height = 'auto';
+          img.style.borderRadius = '8px';
+          const container = document.getElementById('next-event-image');
+          container.innerHTML = '';
+          container.appendChild(img);
+        }
+      })
+      .catch(() => {
+        // Leave grey square if image fails
+      });
+  </script>
 </body>
 </html>
