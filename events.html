@@ -137,7 +137,7 @@
 
   <script>
     // Fetch event title
-    fetch('https://studio--chronoauth-5dt1w.us-central1.hosted.app/api/title')
+    fetch('https://portal.usdv.co.za/api/title')
       .then(response => response.text())
       .then(title => {
         document.getElementById('next-event-title').textContent = title;
@@ -147,7 +147,7 @@
       });
 
     // Fetch event image as binary and display it
-    fetch('https://studio--chronoauth-5dt1w.us-central1.hosted.app/api/image')
+    fetch('https://portal.usdv.co.za/api/image')
       .then(response => response.blob())
       .then(blob => {
         const imgUrl = URL.createObjectURL(blob);
