@@ -59,7 +59,7 @@
   <main class="container">
     <section class="next-event-section">
       <h2>Our Next Event</h2>
-      <div id="next-event-image" class="grey-square large" style="display:flex;align-items:center;justify-content:center;">
+      <div id="next-event-image" class="grey-square large" style="display:flex;align-items:center;justify-content:center;overflow:hidden;">
         <!-- Image will be loaded here -->
       </div>
       <div class="next-event-text">
@@ -146,29 +146,29 @@
         document.getElementById('next-event-title').textContent = 'Event details coming soon';
       });
 
-    // Fetch event image
+    // Fetch event image as binary and display it
     fetch('https://studio--chronoauth-5dt1w.us-central1.hosted.app/api/image')
-      .then(response => response.json())
-      .then(data => {
-        // Try to get the image URL from several possible keys
-        const imageUrl = data?.url || data?.image || (typeof data === 'string' ? data : null);
-        if (imageUrl) {
-          const img = document.createElement('img');
-          img.src = imageUrl;
-          img.alt = 'Next Event';
-          img.style.width = '100%';
-          img.style.height = 'auto';
-          img.style.borderRadius = '8px';
-          img.style.display = 'block';
-          img.style.maxWidth = '500px';
-          const container = document.getElementById('next-event-image');
-          container.innerHTML = '';
-          container.appendChild(img);
-        }
+      .then(response => response.blob())
+      .then(blob => {
+        const imgUrl = URL.createObjectURL(blob);
+        const img = document.createElement('img');
+        img.src = imgUrl;
+        img.alt = 'Next Event';
+        img.style.width = '100%';
+        img.style.height = 'auto';
+        img.style.borderRadius = '8px';
+        img.style.display = 'block';
+        img.style.maxWidth = '100%';
+        img.style.maxHeight = '100%';
+        img.style.objectFit = 'contain';
+        const container = document.getElementById('next-event-image');
+        container.innerHTML = '';
+        container.appendChild(img);
       })
       .catch(() => {
         // Leave grey square if image fails
       });
   </script>
 </body>
+</html>
 </html>
