@@ -150,9 +150,11 @@
     fetch('https://studio--chronoauth-5dt1w.us-central1.hosted.app/api/image')
       .then(response => response.json())
       .then(data => {
-        if (data && (data.url || data.image)) {
+        // Try to get the image URL from several possible keys
+        const imageUrl = data?.url || data?.image || (typeof data === 'string' ? data : null);
+        if (imageUrl) {
           const img = document.createElement('img');
-          img.src = data.url || data.image;
+          img.src = imageUrl;
           img.alt = 'Next Event';
           img.style.width = '100%';
           img.style.height = 'auto';
