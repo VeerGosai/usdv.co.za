@@ -59,7 +59,7 @@
   <main class="container">
     <section class="next-event-section">
       <h2>Our Next Event</h2>
-      <div id="next-event-image" class="grey-square large">
+      <div id="next-event-image" class="grey-square large" style="display:flex;align-items:center;justify-content:center;">
         <!-- Image will be loaded here -->
       </div>
       <div class="next-event-text">
@@ -150,13 +150,15 @@
     fetch('https://studio--chronoauth-5dt1w.us-central1.hosted.app/api/image')
       .then(response => response.json())
       .then(data => {
-        if (data && data.url) {
+        if (data && (data.url || data.image)) {
           const img = document.createElement('img');
-          img.src = data.url;
+          img.src = data.url || data.image;
           img.alt = 'Next Event';
           img.style.width = '100%';
           img.style.height = 'auto';
           img.style.borderRadius = '8px';
+          img.style.display = 'block';
+          img.style.maxWidth = '500px';
           const container = document.getElementById('next-event-image');
           container.innerHTML = '';
           container.appendChild(img);
