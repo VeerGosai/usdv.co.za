@@ -271,6 +271,28 @@ h3 {
   flex: 1;
 }
 
+/* Fix feature items on mobile to stack image over text */
+@media (max-width: 768px) {
+  /* Make all feature items stack vertically */
+  .feature-item,
+  .feature-item.reversed {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Always put image first on mobile */
+  .feature-image {
+    order: -1;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .feature-text {
+    width: 100%;
+  }
+}
+
+/* Event gallery styling */
 .event-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
