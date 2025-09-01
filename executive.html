@@ -26,6 +26,16 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Ensure executive photos are perfect squares and responsive */
+    .exec-photo {
+      width: 100%;
+      height: auto !important;       /* override any fixed heights */
+      aspect-ratio: 1 / 1;           /* keep square */
+      object-fit: cover;             /* fill square without distortion */
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -61,9 +71,7 @@
       <h2>Our Leadership Team</h2>
       <div class="executive-grid">
         <div class="executive-card">
-          <div class="grey-square executive">
-            <span>Evert</span>
-          </div>
+          <img src="assets/Evert.jpeg" alt="Evert - Chairman" class="exec-photo">
           <div class="executive-info">
             <h3>Evert</h3>
             <p>Chairman</p>
@@ -71,9 +79,7 @@
         </div>
         
         <div class="executive-card">
-          <div class="grey-square executive">
-            <span>Lisa</span>
-          </div>
+          <img src="assets/Lisa.jpeg" alt="Lisa - Vice Chairwoman" class="exec-photo">
           <div class="executive-info">
             <h3>Lisa</h3>
             <p>Vice Chairwoman</p>
@@ -81,9 +87,7 @@
         </div>
         
         <div class="executive-card">
-          <div class="grey-square executive">
-            <span>Joshua</span>
-          </div>
+          <img src="assets/Joshua.jpeg" alt="Joshua - Secretary General" class="exec-photo">
           <div class="executive-info">
             <h3>Joshua</h3>
             <p>Secretary General</p>
@@ -91,9 +95,7 @@
         </div>
         
         <div class="executive-card">
-          <div class="grey-square executive">
-            <span>Veer</span>
-          </div>
+          <img src="assets/Veer.jpeg" alt="Veer - Treasurer" class="exec-photo">
           <div class="executive-info">
             <h3>Veer</h3>
             <p>Treasurer</p>
@@ -101,9 +103,7 @@
         </div>
         
         <div class="executive-card">
-          <div class="grey-square executive">
-            <span>Kevin</span>
-          </div>
+          <img src="assets/Kevin.jpeg" alt="Kevin - Equity Officer" class="exec-photo">
           <div class="executive-info">
             <h3>Kevin</h3>
             <p>Equity Officer</p>
@@ -111,9 +111,7 @@
         </div>
         
         <div class="executive-card">
-          <div class="grey-square executive">
-            <span>Saxon</span>
-          </div>
+          <img src="assets/Saxon.jpeg" alt="Saxon - Social Media" class="exec-photo">
           <div class="executive-info">
             <h3>Saxon</h3>
             <p>Social Media</p>
@@ -121,9 +119,7 @@
         </div>
         
         <div class="executive-card">
-          <div class="grey-square executive">
-            <span>Ross</span>
-          </div>
+          <img src="assets/Ross.jpeg" alt="Ross - Head Coach" class="exec-photo">
           <div class="executive-info">
             <h3>Ross</h3>
             <p>Head Coach</p>
@@ -159,6 +155,10 @@
       <p>&copy; 2025 University of Stellenbosch Debating Society. All rights reserved.</p>
       <p class="developer-credit">Developed by <a href="https://webbify.co.za/" target="_blank" rel="noopener">Webbify</a></p>
     </div>
+  </footer>
+  <script src="js/menu.js"></script>
+</body>
+</html>
   </footer>
   <script src="js/menu.js"></script>
 </body>

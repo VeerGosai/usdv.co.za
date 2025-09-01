@@ -26,6 +26,63 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Poster-like box and loading spinner */
+    #next-event-image.poster-box {
+      position: relative;
+      height: 640px;          /* taller poster box on desktop */
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    #next-event-image.poster-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;    /* show full image */
+      display: block;
+    }
+    .spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 48px;
+      height: 48px;
+      border: 4px solid rgba(0,0,0,0.15);
+      border-top-color: var(--primary, #8b0000);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+    @media (max-width: 768px) {
+      #next-event-image.poster-box { height: 480px; } /* mobile poster height */
+    }
+
+    /* Two-column layout for next event */
+    .next-event-layout {
+      display: flex;
+      gap: 30px;
+      align-items: stretch;
+    }
+    .next-event-layout .poster-col,
+    .next-event-layout .info-col {
+      flex: 1 1 50%;
+      min-width: 0; /* prevent overflow */
+    }
+    .next-event-text {
+      /* optional spacing */
+      display: block;
+    }
+    @media (max-width: 900px) {
+      .next-event-layout {
+        flex-direction: column;
+      }
+      .next-event-layout .poster-col,
+      .next-event-layout .info-col {
+        flex-basis: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -59,13 +116,23 @@
   <main class="container">
     <section class="next-event-section">
       <h2>Our Next Event</h2>
-      <div id="next-event-image" class="grey-square large" style="display:flex;align-items:center;justify-content:center;overflow:hidden;">
-        <!-- Image will be loaded here -->
-      </div>
-      <div class="next-event-text">
-        <h3 id="next-event-title">Loading...</h3>
-        <p>We're currently updating our events calendar for the upcoming semester. Check back soon for debates, workshops, and social activities.</p>
-        <p>For information about upcoming events, please email us at <a href="mailto:usdv@sun.ac.za">usdv@sun.ac.za</a>.</p>
+      <div class="next-event-layout">
+        <div class="poster-col">
+          <div
+            id="next-event-image"
+            class="grey-square large poster-box"
+            style="display:flex;align-items:center;justify-content:center;"
+          >
+            <div class="spinner" aria-label="Loading"></div>
+          </div>
+        </div>
+        <div class="info-col">
+          <div class="next-event-text">
+            <h3 id="next-event-title">Loading...</h3>
+            <p>We're currently updating our events calendar for the upcoming semester. Check back soon for debates, workshops, and social activities.</p>
+            <p>For information about upcoming events, please email us at <a href="mailto:usdv@sun.ac.za">usdv@sun.ac.za</a>.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -154,21 +221,14 @@
         const img = document.createElement('img');
         img.src = imgUrl;
         img.alt = 'Next Event';
-        img.style.width = '100%';
-        img.style.height = 'auto';
-        img.style.borderRadius = '8px';
-        img.style.display = 'block';
-        img.style.maxWidth = '100%';
-        img.style.maxHeight = '100%';
-        img.style.objectFit = 'contain';
+        // sizing handled by CSS (#next-event-image.poster-box img)
         const container = document.getElementById('next-event-image');
-        container.innerHTML = '';
+        container.innerHTML = '';        // removes spinner
         container.appendChild(img);
       })
       .catch(() => {
-        // Leave grey square if image fails
+        // Leave grey square/spinner if image fails
       });
   </script>
 </body>
-</html>
 </html>
